@@ -78,7 +78,7 @@ bool Player::compareFlush() //check if cards are of the same type
     char t = hand[0].getType();
     for(int i = 1; i < 5; i++)
     {
-        if(t != hand[1].getType()) //if a card type is different, return false
+        if(t != hand[i].getType()) //if a card type is different, return false
             return false; 
     }
     return true;
@@ -103,6 +103,10 @@ int Player::bestHand()
     
     if( compareFlush() ) //same card type
         flush = 5; //straight means same type (as example all cards are hearts)
+    
+    cout<<"flush: "<<flush<<endl;
+    cout<<"straight: "<<straight<<endl;
+
 
     /* Card analysis */
 
@@ -115,12 +119,17 @@ int Player::bestHand()
         return 3; 
 
     //full house?
+    /*
     if( hand[0].getValue() == hand[2].getValue() || hand[2].getValue() == hand[4].getValue() ) // (1 = 2 = 3) OR (3 = 4 = 5 ) -> three cards with same number
     {
         three_of_a_kind = 7; //mark the three of a kind existence
         if( hand[0].getValue() == hand[1].getValue() || hand[3].getValue() == hand[4].getValue() )
             return 4; //was a full house as we found a pair
     }  
+    */
+   if( (hand[0].getValue() == hand[2].getValue() && hand[3].getValue() == hand[4].getValue()) || // (1 = 2 = 3)
+        (hand[2].getValue() == hand[4].getValue() && hand[0].getValue() == hand[1].getValue()) ) //  (3 = 4 = 5 ) 
+            return 4; //was a full house as we found a pair
     
     //already calculated the flush
     if( flush == 5 )
@@ -131,8 +140,8 @@ int Player::bestHand()
         return straight;
 
     //three of a kind
-    if( three_of_a_kind == 7)
-        return three_of_a_kind;
+    if( hand[0].getValue() == hand[2].getValue() || hand[2].getValue() == hand[4].getValue() )
+        return 7;
     
     //pairs 
     int pairs = 0;

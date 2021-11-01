@@ -45,7 +45,16 @@ bool Card::getColor()
 
 void Card::inspectCard()
 {
-    std::cout<<this->value<<this->type<<std::endl;
+    if(this->value == 11)
+        std::cout<<'J'<<this->type<<std::endl;
+    else if(this->value == 12)
+        std::cout<<'Q'<<this->type<<std::endl;
+    else if(this->value == 13)
+        std::cout<<'K'<<this->type<<std::endl;
+    else if(this->value == 0)
+        std::cout<<"joker"<<std::endl;
+    else
+        std::cout<<this->value<<this->type<<std::endl;
 }
 
 #endif // CARD_CPP

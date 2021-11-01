@@ -91,11 +91,11 @@ Game * initialize()
 
 void Game::giveTest()
 {
-    Card c1 =  Card(1, 's');
-    Card c2 =  Card(2, 's');
-    Card  c3 =  Card(3, 's');
-    Card  c4 =  Card(4, 's');
-    Card  c5 =  Card(5, 's');
+    Card c1 =  Card(0, 's');
+    Card c2 =  Card(13, 's');
+    Card c3 =  Card(12, 'h');
+    Card  c4 =  Card(1, 's');
+    Card  c5 =  Card(11, 's');
 
     p1->getCard(c1 , 0);
     p1->getCard(c2 , 1);
